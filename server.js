@@ -38,6 +38,7 @@ async function getCollection() {
 
 // API Routes
 app.post('/api/register', async (req, res) => {
+  console.log("POST /api/register called");
   try {
     const col = await getCollection();
     const donor = req.body;
@@ -45,11 +46,13 @@ app.post('/api/register', async (req, res) => {
     const result = await col.insertOne(donor);
     res.status(201).json({ success: true, id: result.insertedId });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    console.error("Registration error:", error);
+    res.status(500).json({ success: false, error: error.message, details: "Check if MONGODB_URI is set and IP is whitelisted" });
   }
 });
 
 app.get('/api/donors', async (req, res) => {
+  console.log("GET /api/donors called");
   try {
     const col = await getCollection();
     const { bloodGroup, state, district, locality } = req.query;
@@ -65,7 +68,8 @@ app.get('/api/donors', async (req, res) => {
     const donors = await col.find(query).toArray();
     res.json(donors);
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    console.error("Search error:", error);
+    res.status(500).json({ success: false, error: error.message, details: "Check if MONGODB_URI is set and IP is whitelisted" });
   }
 });
 

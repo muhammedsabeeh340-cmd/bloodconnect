@@ -142,7 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(donorData)
             });
 
-            if (!response.ok) throw new Error("Backend error");
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                throw new Error(errData.error || "Backend error");
+            }
             
             setSuccessState(btnRegister, "Success");
             showStatus(registerStatus, "Donor registered successfully!", "text-green-600");
