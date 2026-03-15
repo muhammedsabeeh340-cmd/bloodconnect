@@ -1,5 +1,5 @@
 // --- BACKEND CONFIGURATION ---
-const API_BASE_URL = "http://127.0.0.1:5001/api";
+const API_BASE_URL = "/api";
 
 const REGIONAL_DATA = {
     "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
