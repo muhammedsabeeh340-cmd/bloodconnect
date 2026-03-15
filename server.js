@@ -12,13 +12,13 @@ app.use(express.json());
 
 // MongoDB Connection
 const uri = process.env.MONGODB_URI;
-let client;
-let donorsCollection;
 
 async function getCollection() {
   if (donorsCollection) return donorsCollection;
   
-  if (!client) {
+  if (!uri) {
+    throw new Error("MONGODB_URI is not defined in environment variables. Please add it to Vercel.");
+  }
     client = new MongoClient(uri, {
       serverApi: {
         version: ServerApiVersion.v1,
