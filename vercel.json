@@ -14,7 +14,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "logo.png",
+      "src": "logo-v3.png",
       "use": "@vercel/static"
     }
   ],
